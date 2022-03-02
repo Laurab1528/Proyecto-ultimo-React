@@ -17,10 +17,9 @@ const NavBar = () => {
       <a href='#'>MASCOTAS</a> 
       <br>
       </br>
-      <span class="material-icons-outlined">
-        shopping_basket
+      <span class="material-icons">
+        shopping_cart
       </span>
-
     </nav>)
        
 }

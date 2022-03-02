@@ -3,7 +3,7 @@ import React from "react"
 // Necesitamos la variable ReactDom en scope
 import ReactDOM from "react-dom"
 import App from "./App"
-//import "./estilo.css"
+import "./estilo.css"
 // Necesitamos un componente en scope
 //function App(){
    // return "hola mundo"

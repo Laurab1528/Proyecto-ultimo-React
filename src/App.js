@@ -8,6 +8,7 @@ import Footer from "./components/Footer"
 import NavBar from "./components/NavBar"
 import ItemListContainer from './components/ItemListContainer'
 
+
 const persona = {
   edad:23,
   nombre:"Juan",
@@ -17,11 +18,12 @@ const persona = {
 }
 
 
+
 const App = () => {
   return(<>
             <Header/>            
             <NavBar/>
-            <ItemListContainer persona={persona} />
+            <ItemListContainer persona={persona}  />
             <Footer/>
             
         </>
