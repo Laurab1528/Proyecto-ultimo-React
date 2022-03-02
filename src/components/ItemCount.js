@@ -1,5 +1,6 @@
 
 
+import { useState } from "react"
 const ItemCount = (stocks,initials,onAdds) => {
     const stock=stocks
     const initial=initials
