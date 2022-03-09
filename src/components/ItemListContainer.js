@@ -1,8 +1,9 @@
 
 import ItemCount from './ItemCount'
-import products from './products';
+import products from './Products';
 import React,{useEffect} from 'react'
 import Itemlist from './Itemlist';
+
 
 function getdatos(){
     return new Promise((resolve,reject) =>{
@@ -30,6 +31,7 @@ const ItemListContainer = (props) => {
             initials={10}
             />    
             <Itemlist Items={Items}  /> 
+            
         </main>
 
     )

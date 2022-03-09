@@ -1,11 +1,27 @@
-import React from "react";
-export default Items({Items}) {
+import React from "react"
+import Products from "./Products"
+
+const Item=() => {
     return(
-        <div>
-            <h1>{Items.producto}</h1>
-            <img src={items.image} alt={Items.producto}></img>
-            <p>{Items.description}</p>
-            <h3>{Items.price}</h3>
+        <main>
+            <Products Item={products}/>
+        </main>
+    )
+} 
+
+const Items = (props) => {
+    
+    return(
+                          
+        
+        <div>      
+            <h1>{props.Item.producto}</h1>
+            <h2>{props.Item.id}</h2>
+            <img src={props.item.image} alt={props.Items.producto}></img>
+            <p>{props.Item.description}</p>
+            <h3>{props.Item.price}</h3>
         </div>
     )
 }
+
+export default Items

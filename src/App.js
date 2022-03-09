@@ -7,6 +7,7 @@ import Header from "./components/Header"
 import Footer from "./components/Footer"
 import NavBar from "./components/NavBar"
 import ItemListContainer from './components/ItemListContainer'
+import products from './components/Products'
 
 
 const persona = {
