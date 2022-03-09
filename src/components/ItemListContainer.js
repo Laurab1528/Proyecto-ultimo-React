@@ -2,7 +2,6 @@
 import ItemCount from './ItemCount'
 import products from './products';
 import React,{useEffect} from 'react'
-import { useEffect } from 'react';
 import Itemlist from './Itemlist';
 
 function getdatos(){
