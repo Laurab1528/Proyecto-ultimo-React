@@ -1,16 +1,16 @@
 import React from 'react'
-import Item from 'Item'
+import Items from 'Items'
 
 export default function Itemlist({Items}) {
   return (
     <section>
 
-        {Items.map(Item=>{
+        {Items.map(Items=>{
             return(
                 <div>
-                    <Item
-                        key={Item.id}
-                        Item={Item}
+                    <Items
+                        key={Items.id}
+                        Item={Items}
                     />
                 </div>
             )

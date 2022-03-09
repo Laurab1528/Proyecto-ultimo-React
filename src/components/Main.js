@@ -27,8 +27,8 @@ const itemList= () =>{
         <h2>Bienvenido!</h2>
         <button onclick={()=>Setloading(!loading)}>toggle</button>
         <ul>
-            {productos.map((producto) => {
-                return  <li key={producto.id}> {producto.nombre}</li>})}
+            {products.map((products) => {
+                return  <li key={products.id}> {products.producto}</li>})}
         </ul>
         <ItemCount stock={20}
             initials={10}/>
