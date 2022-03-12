@@ -3,7 +3,9 @@ import React from "react"
 // Necesitamos la variable ReactDom en scope
 import ReactDOM from "react-dom"
 import App from "./App"
-import "./estilo.css"
+import "./estilo.scss"
+import "bootstrap-icons/font/bootstrap-icons.css"
+
 // Necesitamos un componente en scope
 //function App(){
    // return "hola mundo"

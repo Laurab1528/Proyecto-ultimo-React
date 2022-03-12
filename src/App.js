@@ -3,32 +3,26 @@
 //}
 
 import React from 'react'
-import Header from "./components/Header"
-import Footer from "./components/Footer"
-import NavBar from "./components/NavBar"
-import ItemListContainer from './components/ItemListContainer'
-import products from './components/Products'
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import NavBar from "./components/NavBar";
+import {BrowserRouter as Router } from 'react-router-dom';
+import Main from './components/Main';
 
 
-const persona = {
-  edad:23,
-  nombre:"Juan",
-  
 
 
-}
 
 
 
 const App = () => {
-  return(<>
-            <Header/>            
-            <NavBar/>
-            <ItemListContainer persona={persona}  />
-            <Footer/>
-            
-        </>
-
+  return(
+    <Router className='App'>
+      <Header />
+      <NavBar />     
+      <Main />       
+      <Footer />        
+    </Router>
   )
 }
 

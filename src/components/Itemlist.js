@@ -1,20 +1,22 @@
 import React from 'react'
 import Items from './Items'
 
-export default function Itemlist({Items}) {
+const Itemlist= ({items}) =>{
   return (
     <section>
 
-        {Items.map(Items=>{
+        {items.map (element=>{
             return(
-                <div>
-                    <Items
-                        key={Items.id}
-                        Item={Items}
-                    />
-                </div>
+               
+                <Items
+                    key={element.id}
+                    item={element}
+                />
+                
             )
         })}
     </section>
   )
 }
+
+export default Itemlist
