@@ -6,6 +6,7 @@ const products=[
      "model": "A4",
      "color": "sky blue",
      "imagen": "http://placeimg.com/640/480/food",
+     "dato":"food",
      "id": "1"
     },
     {
@@ -14,6 +15,7 @@ const products=[
      "model": "Escalade",
      "color": "magenta",
      "imagen": "http://placeimg.com/640/480/nature",
+     "dato":"nature",
      "id": "2"
     },
     {
@@ -22,6 +24,7 @@ const products=[
      "model": "El Camino",
      "color": "orchid",
      "imagen": "http://placeimg.com/640/480/city",
+     "city": "city",
      "id": "3"
     },
     {
@@ -30,6 +33,7 @@ const products=[
      "model": "Golf",
      "color": "pink",
      "imagen": "http://placeimg.com/640/480/nightlife",
+     "dato":"nightlife",
      "id": "4"
     },
     {
@@ -46,30 +50,18 @@ const products=[
      "model": "CX-9",
      "color": "teal",
      "imagen": "http://placeimg.com/640/480/people",
+     "dato":"people",
      "id": "6"
     },
-    {
-     "Price": 52568,
-     "CompanyName": "BMW Altima",
-     "model": "Ranchero",
-     "color": "teal",
-     "imagen": "http://placeimg.com/640/480/nightlife",
-     "id": "7"
-    },
-    {
-     "Price": 72620,
-     "CompanyName": "Volkswagen Mustang",
-     "model": "Fortwo",
-     "color": "violet",
-     "imagen": "http://placeimg.com/640/480/people",
-     "id": "8"
-    },
+  
+
     {
      "Price": 26034,
      "CompanyName": "Lamborghini Mustang",
      "model": "Camaro",
      "color": "tan",
      "imagen": "http://placeimg.com/640/480/abstract",
+     "dato": "abstract",
      "id": "9"
     },
     {
@@ -78,78 +70,40 @@ const products=[
      "model": "Corvette",
      "color": "tan",
      "imagen": "http://placeimg.com/640/480/transport",
+     "dato":"transport",
      "id": "10"
     },
-    {
-     "Price": 26656,
-     "CompanyName": "Toyota Camry",
-     "model": "Grand Caravan",
-     "color": "mint green",
-     "imagen": "http://placeimg.com/640/480/city",
-     "id": "11"
-    },
-    {
-     "Price": 74157,
-     "CompanyName": "Polestar Model T",
-     "model": "Golf",
-     "color": "blue",
-     "imagen": "http://placeimg.com/640/480/nature",
-     "id": "12"
-    },
-    {
-     "Price": 66977,
-     "CompanyName": "Chevrolet 1",
-     "model": "Grand Caravan",
-     "color": "violet",
-     "imagen": "http://placeimg.com/640/480/nature",
-     "id": "13"
-    },
+  
+
+
     {
      "Price": 90691,
      "CompanyName": "Porsche Grand Caravan",
      "model": "911",
      "color": "maroon",
      "imagen": "http://placeimg.com/640/480/sports",
+     "dato":"sports",
      "id": "14"
     },
-    {
-     "Price": 48779,
-     "CompanyName": "Smart F-150",
-     "model": "Focus",
-     "color": "ivory",
-     "imagen": "http://placeimg.com/640/480/people",
-     "id": "15"
-    },
+   
     {
      "Price": 18228,
      "CompanyName": "Mini El Camino",
      "model": "Grand Caravan",
      "color": "lime",
      "imagen": "http://placeimg.com/640/480/food",
+     "dato":"food",
      "id": "16"
     },
-    {
-     "Price": 34066,
-     "CompanyName": "Bentley CTS",
-     "model": "Challenger",
-     "color": "blue",
-     "imagen": "http://placeimg.com/640/480/food",
-     "id": "17"
-    },
-    {
-     "Price": 8763,
-     "CompanyName": "Bentley Expedition",
-     "model": "Alpine",
-     "color": "green",
-     "imagen": "http://placeimg.com/640/480/nature",
-     "id": "18"
-    },
+    
+    
     {
      "Price": 74145,
      "CompanyName": "Volvo Impala",
      "model": "XTS",
      "color": "fuchsia",
      "imagen": "http://placeimg.com/640/480/animals",
+     "dato":"animals",
      "id": "19"
     },
     {
@@ -158,6 +112,7 @@ const products=[
      "model": "Model S",
      "color": "white",
      "imagen": "http://placeimg.com/640/480/business",
+     "dato":"business",
      "id": "20"
     },
     {

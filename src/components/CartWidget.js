@@ -1,7 +1,7 @@
 import React from 'react'
-import {CartFill} from 'react-boostrap-icons'
+import {CartFill} from 'react-bootstrap-icons'
 
-function cartWidget(){
+function CartWidget(){
     return(
         <div>
             <CartFill />
@@ -10,4 +10,4 @@ function cartWidget(){
 }
 
 
-export default cartWidget
+export default CartWidget

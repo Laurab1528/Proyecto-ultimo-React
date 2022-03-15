@@ -11,7 +11,7 @@ const Main = () => {
                 <Route path="/" element={<ItemListContainer/>} />
                 <Route path="/model/:idmodel" element={<ItemListContainer/>} />
                 <Route path="/products/:id" element={<ItemDetailContainer/>} />
-                <Route path="/cartwidget" element={<CartWidget/>} />
+                <Route path="/CartWidget" element={<CartWidget/>} />
             </Routes>
         </Container>
     );

@@ -19,7 +19,7 @@ function getdatos(idmodel){
 
 }
 const ItemListContainer = (props) => {
-    const [items,setItems]=React.useState([]);
+    const [item,setItems]=React.useState([]);
     const {idmodel}=useParams();
     useEffect(() => {
         
@@ -39,7 +39,7 @@ const ItemListContainer = (props) => {
             stock={20}
             initials={10}
             />    
-            <Itemlist items={items}  /> 
+            <Itemlist items={item}  /> 
             
         </main>
 

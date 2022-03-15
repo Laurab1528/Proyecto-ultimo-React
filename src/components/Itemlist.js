@@ -1,11 +1,11 @@
 import React from 'react'
 import Items from './Items'
 
-const Itemlist= ({items}) =>{
+const Itemlist= ({item}) =>{
   return (
     <section>
 
-        {items.map (element=>{
+        {item.map (element=>{
             return(
                
                 <Items
