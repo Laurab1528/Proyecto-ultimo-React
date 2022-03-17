@@ -3,8 +3,48 @@ import ItemCount from './ItemCount'
 import products from './products';
 import React,{useEffect} from 'react'
 import Itemlist from './Itemlist';
-import { useParams } from 'react-router-dom';
+import { useParams, useState } from 'react-router-dom';
+import Spinner from './Spinner'
+const ItemListContainer = () => {
+    const [item, setItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const { idmodel } = useParams();
 
+    useEffect(() => {
+        setLoading(true);
+        getdatos(idmodel)
+            .then((res) => {
+                setItems(res);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+
+        return () => {
+            setItems([]);
+        };
+    }, [idmodel]);
+
+    return (
+        <div style={{ marginTop: '20px' }}>
+           
+            <main>
+                     
+                <ItemCount 
+                stock={20}
+                initials={10}
+                />                   
+                
+            </main>
+
+    )
+            {loading ? <Spinner /> : <Itemlist items={item} />}
+        </div>
+    );
+};
 
 function getdatos(idmodel){
     return new Promise((resolve,reject) =>{
@@ -18,31 +58,5 @@ function getdatos(idmodel){
     })
 
 }
-const ItemListContainer = (props) => {
-    const [item,setItems]=React.useState([]);
-    const {idmodel}=useParams();
-    useEffect(() => {
-        
-        getdatos(idmodel)
-        .then(respuestaPromise=> setItems(respuestaPromise))
-    },[idmodel]);
-    
- 
 
-    
-    
-    return(
-        <main>
-            <h2> Bienvenido {props.persona.nombre}!</h2>
-            <h2> Tu edad es: {props.persona.edad}</h2>            
-            <ItemCount 
-            stock={20}
-            initials={10}
-            />    
-            <Itemlist items={item}  /> 
-            
-        </main>
-
-    )
-}
 export default ItemListContainer

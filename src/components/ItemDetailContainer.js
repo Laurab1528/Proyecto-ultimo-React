@@ -15,9 +15,9 @@ function getInfo(idmodel){
     })
 
 }
-function ItemDetailContainer( {greeting,id} )  {
+function ItemDetailContainer(  )  {
     const [item,setItem]=useState([]);
-    const [idmodel]=useParams();
+    const {idmodel}=useParams();
    
  
     useEffect(() => {

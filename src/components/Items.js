@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 const Items = ({item}) => {
     
-    const url=`/products/http://placeimg.com/640/480/${item.id}`
+    
     return(
                           
         
@@ -13,8 +13,8 @@ const Items = ({item}) => {
             <h2>{item.id}</h2>
             <img src={item.imagen} alt={item.color}></img>
             <p>{item.model}</p>
-            <h3>{item.price}</h3>
-            <Link to={url}>ver detalle</Link>
+            <h3>${item.price}</h3>
+            <Link to={`/products/${item.id}`}>ver detalle</Link>
         </div>
     )
 }
