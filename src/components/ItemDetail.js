@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ItemCount from '../ItemCount';
+import ItemCount from './ItemCount';
 const ItemDetail = ({item}) => {
     const [cantidad, setCantidad] = useState(0);
     let navigate = useNavigate();
@@ -19,7 +19,13 @@ const ItemDetail = ({item}) => {
                 <h3>{item.model}</h3>
                 <p>${item.Price}</p>
                 <p>{item.color}</p>
+               { 
+
+               cantidad=== 0?
                 <ItemCount stock={item.stock} onAdd={onAdd} />
+                : 
+                <link>Terminar compra</link>
+               }
             </div>
             <p className="descripcion">{item.CompanyName}</p>
         </article>

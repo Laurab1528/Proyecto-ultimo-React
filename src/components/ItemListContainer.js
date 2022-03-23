@@ -3,8 +3,10 @@ import ItemCount from './ItemCount'
 import products from './products';
 import React,{useEffect} from 'react'
 import Itemlist from './Itemlist';
-import { useParams, useState } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
+import { useState } from 'react';
 import Spinner from './Spinner'
+
 const ItemListContainer = () => {
     const [item, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
