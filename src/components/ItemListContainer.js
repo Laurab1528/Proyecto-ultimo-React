@@ -1,34 +1,33 @@
-
 import ItemCount from './ItemCount'
-import products from './products';
 import React,{useEffect} from 'react'
 import Itemlist from './Itemlist';
 import { useParams} from 'react-router-dom';
 import { useState } from 'react';
 import Spinner from './Spinner'
+import { toast } from "react-toastify";
 
 const ItemListContainer = () => {
     const [item, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
-    const { idmodel } = useParams();
+    const { idCompany } = useParams();
 
     useEffect(() => {
-        setLoading(true);
-        getdatos(idmodel)
-            .then((res) => {
-                setItems(res);
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
+        fetch('https://6208563822c9e90017d33067.mockapi.io/api/v1/carro')
+        .then((res) => {
+            return res.json()
+        })
+        .then((res) => {
+            setItems(res);
+        })
+        .catch(() => {
+            toast.log("error cargando");
+        })
+        .finally(() => {
+            setLoading(false);
+        });
 
-        return () => {
-            setItems([]);
-        };
-    }, [idmodel]);
+     
+    }, [idCompany])
 
     return (
         <div style={{ marginTop: '20px' }}>
@@ -48,17 +47,6 @@ const ItemListContainer = () => {
     );
 };
 
-function getdatos(idmodel){
-    return new Promise((resolve,reject) =>{
-        setTimeout(function(){
-            if (!idmodel){            
-                resolve(products)}
-            else {let carros =    products.filter(item=>item.model ===idmodel);
-                resolve(carros)}
-                
-        },2000);
-    })
 
-}
 
 export default ItemListContainer

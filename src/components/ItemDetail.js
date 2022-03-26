@@ -1,17 +1,26 @@
 
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState,useContext  } from 'react';
+import { Link } from 'react-router-dom';
 import ItemCount from './ItemCount';
-const ItemDetail = ({item}) => {
-    const [cantidad, setCantidad] = useState(0);
-    let navigate = useNavigate();
+import { contexto } from './Context';
 
-    const onAdd = (cantidad) => {
-        setCantidad(cantidad);
-        setTimeout(() => {
-            navigate('/CartWidget');
-        }, 3000);
-    };
+const ItemDetail = ({ item }) => {    
+
+    const { addItem } = useContext(contexto);
+    const [cantidad, setCantidad ]= useState(0)
+
+    const [seleccionado,setSeleccionado] = useState(false)
+
+    const onAdd = (cant) => {
+        console.log('Añadir al carrito',cant)
+        setSeleccionado(cant);        
+        
+        addItem(item, cant); 
+    }
+
+
+    ;
+;
     return (
         <article className="itemDetail">
             <img src={item.imagen} alt="" />
@@ -22,12 +31,12 @@ const ItemDetail = ({item}) => {
                { 
 
                cantidad=== 0?
-                <ItemCount stock={item.stock} onAdd={onAdd} />
+                <ItemCount stock={item.stock} initial={item.initial} onAdd={onAdd} />
                 : 
-                <link>Terminar compra</link>
+                <Link to='/Cart'>Terminar compra</Link>
                }
             </div>
-            <p className="descripcion">{item.CompanyName}</p>
+            <p className="Company">{item.CompanyName}</p>
         </article>
     )
 }

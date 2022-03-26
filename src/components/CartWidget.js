@@ -1,13 +1,28 @@
-import React from 'react'
-import {CartFill} from 'react-bootstrap-icons'
+import { useContext } from "react"
+import { contexto } from "./Context"
 
-function CartWidget(){
-    return(
+
+const Carrito = () => {
+
+    const {carrito} = useContext(contexto)
+
+    const handleClick = () => {
+        
+    }
+
+    return (
         <div>
-            <CartFill />
+            <h2>Carrito</h2>
+            {carrito.map(producto => (
+                <div key={producto.id}>
+                    <p>{producto.model}</p>
+                    <p>{producto.Cantidad} x {producto.precio}</p>
+                    <p>Total Parcial : {producto.Cantidad * producto.precio}</p>
+                    <button onClick={handleClick}>borrar</button>
+                </div>
+            ))}
         </div>
     )
 }
 
-
-export default CartWidget
+export default Carrito

@@ -1,37 +1,43 @@
 
-import products from './products';
 import React,{useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import ItemDetail from './ItemDetail';
+import Spinner from './Spinner';
+import { toast } from "react-toastify";
 
 
-
-function getInfo(idmodel){
-    return new Promise((resolve,reject) =>{
-        setTimeout(function(){
-        let productoss =    products.find(item=>item.model === idmodel);
-        resolve(productoss)
-        },2000);
-    })
-
-}
 function ItemDetailContainer(  )  {
+
+
     const [item,setItem]=useState([]);
     const {idmodel}=useParams();
+    const [loading,setLoading] =useState(true);
    
  
-    useEffect(() => {
+    useEffect(()=>{
 
-     getInfo(idmodel)
-     .then(respuestaPromise =>setItem(respuestaPromise))
-    },[]);
-
+        fetch(`https://6208563822c9e90017d33067.mockapi.io/api/v1/carro/${idmodel}`)
+        .then((res)=>{
+            return res.json()
+        })
+        .then((respuesta)=>{
+          setItem(respuesta)
+        })
+        .catch(()=>{
+          toast.error("Error al cargar el producto")
+        })
+        .finally(()=>{
+          setLoading(false)
+        })
+    
+      },[])
+    
     return(
         <>
-        <h1>greeting</h1>
-        <div className="container">
-            <ItemDetail item={item}/>
+        
 
+        <div className="container" style={{ marginTop: '20px' }}>
+            {loading ? <Spinner /> : <ItemDetail item={item} />}
         </div>
         </>
     )
