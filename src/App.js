@@ -17,8 +17,10 @@ import MiProvider from "./components/Context";
 
 
 
+
 const App = () => {
   return(
+  
     <Router className='App'>
       <MiProvider>
         <Header />

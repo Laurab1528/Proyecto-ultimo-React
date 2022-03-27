@@ -5,29 +5,23 @@ import { useParams} from 'react-router-dom';
 import { useState } from 'react';
 import Spinner from './Spinner'
 import { toast } from "react-toastify";
-
+import {getAllcars,getAllcarsFromCatgory} from "../Firebase/index"
 const ItemListContainer = () => {
     const [item, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const { idCompany } = useParams();
 
     useEffect(() => {
-        fetch('https://6208563822c9e90017d33067.mockapi.io/api/v1/carro')
-        .then((res) => {
-            return res.json()
-        })
-        .then((res) => {
-            setItems(res);
-        })
-        .catch(() => {
-            toast.log("error cargando");
-        })
-        .finally(() => {
-            setLoading(false);
-        });
+        if (idCompany){
+            getAllcarsFromCatgory(idCompany)      
+            .then(respuestaPromise => setItems(respuestaPromise))
+        }
+        else{
+            getAllcars()      
+            .then(respuestaPromise => setItems(respuestaPromise))
 
-     
-    }, [idCompany])
+        }
+        }, [idCompany]);
 
     return (
         <div style={{ marginTop: '20px' }}>
