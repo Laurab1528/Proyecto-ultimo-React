@@ -38,7 +38,7 @@ const ItemListContainer = () => {
             </main>
 
     )
-            {loading ? <Spinner /> : <Itemlist item={item} />}
+            {loading ? <Spinner /> : <Itemlist items={item} />}
         </div>
     );
 };

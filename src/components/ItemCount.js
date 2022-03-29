@@ -3,12 +3,12 @@
 import { useState } from "react"
 const ItemCount = (props) => {
    
-    const [estado, setEstado]=useState(props.item.initials)
+    const [estado, setEstado]=useState(props.initial)
     console.log(estado)
     
 
     const  handleSumar = () => {
-        if(estado < props.item.stock){
+        if(estado < props.stock){
             setEstado (estado + 1)
         }
     }
@@ -23,16 +23,11 @@ const ItemCount = (props) => {
     }
 
     const  handleResetear= () => {
-        setEstado (props.item.initials)
+        setEstado (props.initial)
 
     }
 
-    const  onAdd= () => {
-        
-        
-        console.log(setEstado);
 
-    }
 
    
     
@@ -42,7 +37,7 @@ const ItemCount = (props) => {
             <button onClick={handleSumar}>sumar</button>
             <button onClick={handleRestar}>restar</button>
             <button onClick={handleResetear}>resetear</button>
-            <button onClick={onAdd}>Agregar</button>
+            <button onClick={() => props.onAdd(estado)}>Agregar</button>
         </main>
 
     )

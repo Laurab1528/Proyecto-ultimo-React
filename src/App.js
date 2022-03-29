@@ -18,8 +18,10 @@ import MiProvider from "./components/Context";
 
 
 
+
+
 const App = () => {
-  return(
+  return( 
   
     <Router className='App'>
       <MiProvider>
@@ -34,6 +36,7 @@ const App = () => {
     </Router>
   )
 }
+
 
 
 // export default

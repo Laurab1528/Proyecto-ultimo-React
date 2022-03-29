@@ -2,8 +2,508 @@ import { firestoreDB } from './index' // 👈 importar archivo de configuración
 import { collection, setDoc, doc, getDoc } from 'firebase/firestore/lite'
 
 
-const PRODUCTS = [{"Price":68178,"CompanyName":"Rolls Royce ATS","model":"Roadster","color":"salmon","imagen":"http://placeimg.com/640/480/food","Cantidad":11257,"id":"1"},{"Price":64321,"CompanyName":"Volkswagen A8","model":"Challenger","color":"silver","imagen":"http://placeimg.com/640/480/fashion","Cantidad":98150,"id":"2"},{"Price":48922,"CompanyName":"Rolls Royce Colorado","model":"V90","color":"blue","imagen":"http://placeimg.com/640/480/nightlife","Cantidad":28354,"id":"3"},{"Price":14444,"CompanyName":"Bentley Alpine","model":"Mustang","color":"lime","imagen":"http://placeimg.com/640/480/abstract","Cantidad":83510,"id":"4"},{"Price":13658,"CompanyName":"Kia V90","model":"Fiesta","color":"yellow","imagen":"http://placeimg.com/640/480/transport","Cantidad":82998,"id":"5"},{"Price":68359,"CompanyName":"Aston Martin Alpine","model":"V90","color":"cyan","imagen":"http://placeimg.com/640/480/sports","Cantidad":9647,"id":"6"},{"Price":60290,"CompanyName":"Bugatti Grand Caravan","model":"Alpine","color":"salmon","imagen":"http://placeimg.com/640/480/abstract","Cantidad":44786,"id":"7"},{"Price":55842,"CompanyName":"Toyota XTS","model":"Expedition","color":"grey","imagen":"http://placeimg.com/640/480/sports","Cantidad":10489,"id":"8"},{"Price":7030,"CompanyName":"Mazda Altima","model":"El Camino","color":"silver","imagen":"http://placeimg.com/640/480/people","Cantidad":87033,"id":"9"},{"Price":33952,"CompanyName":"Smart CTS","model":"911","color":"orange","imagen":"http://placeimg.com/640/480/food","Cantidad":51818,"id":"10"},{"Price":10161,"CompanyName":"Fiat Silverado","model":"911","color":"grey","imagen":"http://placeimg.com/640/480/people","Cantidad":42124,"id":"11"},{"Price":68280,"CompanyName":"Honda 2","model":"Taurus","color":"silver","imagen":"http://placeimg.com/640/480/people","Cantidad":52754,"id":"12"},{"Price":81424,"CompanyName":"Ford Focus","model":"El Camino","color":"white","imagen":"http://placeimg.com/640/480/abstract","Cantidad":637,"id":"13"},{"Price":80833,"CompanyName":"Aston Martin El Camino","model":"Silverado","color":"silver","imagen":"http://placeimg.com/640/480/food","Cantidad":3575,"id":"14"},{"Price":89895,"CompanyName":"Land Rover Ranchero","model":"Corvette","color":"blue","imagen":"http://placeimg.com/640/480/business","Cantidad":96621,"id":"15"},{"Price":94310,"CompanyName":"Dodge Aventador","model":"Aventador","color":"salmon","imagen":"http://placeimg.com/640/480/people","Cantidad":46875,"id":"16"},{"Price":87447,"CompanyName":"Polestar Ranchero","model":"Beetle","color":"sky blue","imagen":"http://placeimg.com/640/480/technics","Cantidad":34317,"id":"17"},{"Price":89904,"CompanyName":"Aston Martin XTS","model":"Camaro","color":"white","imagen":"http://placeimg.com/640/480/food","Cantidad":53588,"id":"18"},{"Price":65397,"CompanyName":"Audi CTS","model":"Altima","color":"violet","imagen":"http://placeimg.com/640/480/technics","Cantidad":89005,"id":"19"},{"Price":81057,"CompanyName":"Dodge Alpine","model":"1","color":"purple","imagen":"http://placeimg.com/640/480/food","Cantidad":90919,"id":"20"},{"Price":63192,"CompanyName":"Fiat Camaro","model":"911","color":"red","imagen":"http://placeimg.com/640/480/animals","Cantidad":71926,"id":"21"},{"Price":46748,"CompanyName":"Nissan Model S","model":"Land Cruiser","color":"plum","imagen":"http://placeimg.com/640/480/business","Cantidad":58453,"id":"22"},{"Price":80815,"CompanyName":"Mini Civic","model":"Malibu","color":"green","imagen":"http://placeimg.com/640/480/abstract","Cantidad":96107,"id":"23"},{"Price":28460,"CompanyName":"Lamborghini PT Cruiser","model":"Aventador","color":"maroon","imagen":"http://placeimg.com/640/480/nature","Cantidad":29435,"id":"24"},{"Price":96083,"CompanyName":"Dodge Jetta","model":"Focus","color":"gold","imagen":"http://placeimg.com/640/480/abstract","Cantidad":21288,"id":"25"},{"Price":42267,"CompanyName":"Jeep Charger","model":"Mustang","color":"black","imagen":"http://placeimg.com/640/480/technics","Cantidad":76772,"id":"26"},{"Price":17994,"CompanyName":"Polestar Fiesta","model":"V90","color":"lime","imagen":"http://placeimg.com/640/480/nature","Cantidad":48235,"id":"27"},{"Price":52882,"CompanyName":"Audi Accord","model":"Explorer","color":"pink","imagen":"http://placeimg.com/640/480/fashion","Cantidad":32057,"id":"28"},{"Price":43457,"CompanyName":"Jaguar Jetta","model":"CX-9","color":"green","imagen":"http://placeimg.com/640/480/people","Cantidad":73873,"id":"29"},{"Price":21,"CompanyName":"Bentley Silverado","model":"Impala","color":"olive","imagen":"http://placeimg.com/640/480/cats","Cantidad":7796,"id":"30"},{"Price":4374,"CompanyName":"Dodge XTS","model":"Model T","color":"blue","imagen":"http://placeimg.com/640/480/city","Cantidad":23622,"id":"31"},{"Price":28878,"CompanyName":"Aston Martin Element","model":"Grand Cherokee","color":"olive","imagen":"http://placeimg.com/640/480/fashion","Cantidad":57552,"id":"32"},{"Price":39332,"CompanyName":"Chrysler Focus","model":"Roadster","color":"yellow","imagen":"http://placeimg.com/640/480/business","Cantidad":62478,"id":"33"},{"Price":31617,"CompanyName":"Land Rover Focus","model":"Model 3","color":"grey","imagen":"http://placeimg.com/640/480/people","Cantidad":67733,"id":"34"},{"Price":14373,"CompanyName":"Volvo Altima","model":"Countach","color":"azure","imagen":"http://placeimg.com/640/480/food","Cantidad":29875,"id":"35"},{"Price":22003,"CompanyName":"Tesla Wrangler","model":"Fortwo","color":"blue","imagen":"http://placeimg.com/640/480/sports","Cantidad":45964,"id":"36"},{"Price":48527,"CompanyName":"Tesla Impala","model":"Grand Caravan","color":"sky blue","imagen":"http://placeimg.com/640/480/business","Cantidad":91053,"id":"37"},{"Price":8077,"CompanyName":"Polestar Grand Cherokee","model":"CX-9","color":"magenta","imagen":"http://placeimg.com/640/480/technics","Cantidad":67984,"id":"38"},{"Price":72559,"CompanyName":"Mini Malibu","model":"CTS","color":"magenta","imagen":"http://placeimg.com/640/480/transport","Cantidad":93732,"id":"39"},{"Price":73402,"CompanyName":"Chrysler XC90","model":"Model T","color":"purple","imagen":"http://placeimg.com/640/480/cats","Cantidad":3079,"id":"40"},{"Price":76681,"CompanyName":"Nissan Grand Caravan","model":"Malibu","color":"pink","imagen":"http://placeimg.com/640/480/business","Cantidad":67053,"id":"41"},{"Price":18294,"CompanyName":"Maserati ATS","model":"Mustang","color":"violet","imagen":"http://placeimg.com/640/480/nightlife","Cantidad":68908,"id":"42"},{"Price":49822,"CompanyName":"Ford Escalade","model":"Colorado","color":"plum","imagen":"http://placeimg.com/640/480/city","Cantidad":2049,"id":"43"},{"Price":48872,"CompanyName":"Hyundai F-150","model":"Colorado","color":"silver","imagen":"http://placeimg.com/640/480/food","Cantidad":43691,"id":"44"},{"Price":91848,"CompanyName":"Nissan ATS","model":"Cruze","color":"turquoise","imagen":"http://placeimg.com/640/480/nightlife","Cantidad":56989,"id":"45"},{"Price":80623,"CompanyName":"Mazda Civic","model":"2","color":"magenta","imagen":"http://placeimg.com/640/480/sports","Cantidad":43203,"id":"46"},{"Price":15254,"CompanyName":"Bugatti CTS","model":"CX-9","color":"maroon","imagen":"http://placeimg.com/640/480/transport","Cantidad":80654,"id":"47"},{"Price":15357,"CompanyName":"Chevrolet Expedition","model":"El Camino","color":"cyan","imagen":"http://placeimg.com/640/480/people","Cantidad":89866,"id":"48"},{"Price":39441,"CompanyName":"Hyundai Alpine","model":"Volt","color":"olive","imagen":"http://placeimg.com/640/480/animals","Cantidad":55687,"id":"49"},{"Price":44599,"CompanyName":"Rolls Royce Cruze","model":"Prius","color":"olive","imagen":"http://placeimg.com/640/480/technics","Cantidad":50187,"id":"50"}]
-
+const PRODUCTS = [
+    {
+     "Price": 16522,
+     "CompanyName": "Maserati Grand Cherokee",
+     "model": "XC90",
+     "color": "plum",
+     "imagen": "http://placeimg.com/640/480/cats",
+     "Cantidad": 2527,
+     "Stock": 60,
+     "id": "1"
+    },
+    {
+     "Price": 81662,
+     "CompanyName": "Bugatti 2",
+     "model": "PT Cruiser",
+     "color": "pink",
+     "imagen": "http://placeimg.com/640/480/abstract",
+     "Cantidad": 98848,
+     "Stock": 4,
+     "id": "2"
+    },
+    {
+     "Price": 23279,
+     "CompanyName": "Polestar Model 3",
+     "model": "F-150",
+     "color": "yellow",
+     "imagen": "http://placeimg.com/640/480/sports",
+     "Cantidad": 98523,
+     "Stock": 19,
+     "id": "3"
+    },
+    {
+     "Price": 72362,
+     "CompanyName": "Bentley ATS",
+     "model": "Grand Caravan",
+     "color": "tan",
+     "imagen": "http://placeimg.com/640/480/nature",
+     "Cantidad": 89357,
+     "Stock": 25,
+     "id": "4"
+    },
+    {
+     "Price": 55449,
+     "CompanyName": "Volkswagen Element",
+     "model": "Focus",
+     "color": "tan",
+     "imagen": "http://placeimg.com/640/480/animals",
+     "Cantidad": 49579,
+     "Stock": 52,
+     "id": "5"
+    },
+    {
+     "Price": 36916,
+     "CompanyName": "Maserati Altima",
+     "model": "Mustang",
+     "color": "orchid",
+     "imagen": "http://placeimg.com/640/480/sports",
+     "Cantidad": 43845,
+     "Stock": 70,
+     "id": "6"
+    },
+    {
+     "Price": 65208,
+     "CompanyName": "Chevrolet Spyder",
+     "model": "Spyder",
+     "color": "purple",
+     "imagen": "http://placeimg.com/640/480/food",
+     "Cantidad": 64920,
+     "Stock": 75,
+     "id": "7"
+    },
+    {
+     "Price": 79236,
+     "CompanyName": "Chrysler Beetle",
+     "model": "Grand Cherokee",
+     "color": "teal",
+     "imagen": "http://placeimg.com/640/480/nature",
+     "Cantidad": 7802,
+     "Stock": 29,
+     "id": "8"
+    },
+    {
+     "Price": 43864,
+     "CompanyName": "Land Rover Prius",
+     "model": "El Camino",
+     "color": "grey",
+     "imagen": "http://placeimg.com/640/480/fashion",
+     "Cantidad": 37428,
+     "Stock": 18,
+     "id": "9"
+    },
+    {
+     "Price": 87042,
+     "CompanyName": "Smart Expedition",
+     "model": "Grand Cherokee",
+     "color": "orchid",
+     "imagen": "http://placeimg.com/640/480/business",
+     "Cantidad": 27937,
+     "Stock": 19,
+     "id": "10"
+    },
+    {
+     "Price": 66067,
+     "CompanyName": "Dodge Expedition",
+     "model": "Charger",
+     "color": "sky blue",
+     "imagen": "http://placeimg.com/640/480/animals",
+     "Cantidad": 70682,
+     "Stock": 49,
+     "id": "11"
+    },
+    {
+     "Price": 48925,
+     "CompanyName": "Nissan Spyder",
+     "model": "Camry",
+     "color": "olive",
+     "imagen": "http://placeimg.com/640/480/animals",
+     "Cantidad": 93846,
+     "Stock": 47,
+     "id": "12"
+    },
+    {
+     "Price": 68913,
+     "CompanyName": "Mini Charger",
+     "model": "Civic",
+     "color": "yellow",
+     "imagen": "http://placeimg.com/640/480/fashion",
+     "Cantidad": 35030,
+     "Stock": 94,
+     "id": "13"
+    },
+    {
+     "Price": 69996,
+     "CompanyName": "Volkswagen A8",
+     "model": "Malibu",
+     "color": "orange",
+     "imagen": "http://placeimg.com/640/480/fashion",
+     "Cantidad": 77673,
+     "Stock": 83,
+     "id": "14"
+    },
+    {
+     "Price": 16038,
+     "CompanyName": "Land Rover Fiesta",
+     "model": "2",
+     "color": "orchid",
+     "imagen": "http://placeimg.com/640/480/technics",
+     "Cantidad": 17578,
+     "Stock": 11,
+     "id": "15"
+    },
+    {
+     "Price": 21654,
+     "CompanyName": "Mazda Roadster",
+     "model": "XTS",
+     "color": "white",
+     "imagen": "http://placeimg.com/640/480/people",
+     "Cantidad": 14228,
+     "Stock": 39,
+     "id": "16"
+    },
+    {
+     "Price": 18428,
+     "CompanyName": "Chevrolet Aventador",
+     "model": "El Camino",
+     "color": "magenta",
+     "imagen": "http://placeimg.com/640/480/business",
+     "Cantidad": 82233,
+     "Stock": 52,
+     "id": "17"
+    },
+    {
+     "Price": 31478,
+     "CompanyName": "Dodge V90",
+     "model": "Focus",
+     "color": "indigo",
+     "imagen": "http://placeimg.com/640/480/sports",
+     "Cantidad": 8508,
+     "Stock": 4,
+     "id": "18"
+    },
+    {
+     "Price": 33449,
+     "CompanyName": "Jaguar Wrangler",
+     "model": "V90",
+     "color": "pink",
+     "imagen": "http://placeimg.com/640/480/animals",
+     "Cantidad": 10180,
+     "Stock": 34,
+     "id": "19"
+    },
+    {
+     "Price": 47436,
+     "CompanyName": "Mini Corvette",
+     "model": "Accord",
+     "color": "turquoise",
+     "imagen": "http://placeimg.com/640/480/transport",
+     "Cantidad": 622,
+     "Stock": 21,
+     "id": "20"
+    },
+    {
+     "Price": 62138,
+     "CompanyName": "Audi Cruze",
+     "model": "Alpine",
+     "color": "sky blue",
+     "imagen": "http://placeimg.com/640/480/abstract",
+     "Cantidad": 21939,
+     "Stock": 26,
+     "id": "21"
+    },
+    {
+     "Price": 39807,
+     "CompanyName": "Land Rover Focus",
+     "model": "Silverado",
+     "color": "salmon",
+     "imagen": "http://placeimg.com/640/480/abstract",
+     "Cantidad": 90510,
+     "Stock": 6,
+     "id": "22"
+    },
+    {
+     "Price": 63105,
+     "CompanyName": "Ferrari Taurus",
+     "model": "Model S",
+     "color": "magenta",
+     "imagen": "http://placeimg.com/640/480/transport",
+     "Cantidad": 77235,
+     "Stock": 82,
+     "id": "23"
+    },
+    {
+     "Price": 39919,
+     "CompanyName": "Ford Wrangler",
+     "model": "Focus",
+     "color": "yellow",
+     "imagen": "http://placeimg.com/640/480/nightlife",
+     "Cantidad": 7881,
+     "Stock": 82,
+     "id": "24"
+    },
+    {
+     "Price": 27282,
+     "CompanyName": "Cadillac Charger",
+     "model": "Golf",
+     "color": "gold",
+     "imagen": "http://placeimg.com/640/480/cats",
+     "Cantidad": 53410,
+     "Stock": 70,
+     "id": "25"
+    },
+    {
+     "Price": 15612,
+     "CompanyName": "Jaguar Accord",
+     "model": "Mercielago",
+     "color": "indigo",
+     "imagen": "http://placeimg.com/640/480/city",
+     "Cantidad": 18930,
+     "Stock": 63,
+     "id": "26"
+    },
+    {
+     "Price": 48736,
+     "CompanyName": "Dodge Ranchero",
+     "model": "Countach",
+     "color": "magenta",
+     "imagen": "http://placeimg.com/640/480/abstract",
+     "Cantidad": 72365,
+     "Stock": 61,
+     "id": "27"
+    },
+    {
+     "Price": 72417,
+     "CompanyName": "Polestar XC90",
+     "model": "LeBaron",
+     "color": "lavender",
+     "imagen": "http://placeimg.com/640/480/fashion",
+     "Cantidad": 17417,
+     "Stock": 70,
+     "id": "28"
+    },
+    {
+     "Price": 20534,
+     "CompanyName": "Cadillac XC90",
+     "model": "Impala",
+     "color": "pink",
+     "imagen": "http://placeimg.com/640/480/fashion",
+     "Cantidad": 93587,
+     "Stock": 85,
+     "id": "29"
+    },
+    {
+     "Price": 48030,
+     "CompanyName": "Toyota Colorado",
+     "model": "Model T",
+     "color": "gold",
+     "imagen": "http://placeimg.com/640/480/nature",
+     "Cantidad": 30110,
+     "Stock": 17,
+     "id": "30"
+    },
+    {
+     "Price": 2516,
+     "CompanyName": "BMW Roadster",
+     "model": "Beetle",
+     "color": "sky blue",
+     "imagen": "http://placeimg.com/640/480/people",
+     "Cantidad": 49629,
+     "Stock": 21,
+     "id": "31"
+    },
+    {
+     "Price": 32958,
+     "CompanyName": "Bugatti Element",
+     "model": "Corvette",
+     "color": "ivory",
+     "imagen": "http://placeimg.com/640/480/transport",
+     "Cantidad": 49414,
+     "Stock": 65,
+     "id": "32"
+    },
+    {
+     "Price": 74297,
+     "CompanyName": "Nissan 911",
+     "model": "El Camino",
+     "color": "tan",
+     "imagen": "http://placeimg.com/640/480/animals",
+     "Cantidad": 9610,
+     "Stock": 53,
+     "id": "33"
+    },
+    {
+     "Price": 50544,
+     "CompanyName": "Tesla Spyder",
+     "model": "Land Cruiser",
+     "color": "grey",
+     "imagen": "http://placeimg.com/640/480/business",
+     "Cantidad": 34969,
+     "Stock": 92,
+     "id": "34"
+    },
+    {
+     "Price": 60862,
+     "CompanyName": "Lamborghini Colorado",
+     "model": "Malibu",
+     "color": "tan",
+     "imagen": "http://placeimg.com/640/480/nature",
+     "Cantidad": 6098,
+     "Stock": 59,
+     "id": "35"
+    },
+    {
+     "Price": 51481,
+     "CompanyName": "Ferrari A4",
+     "model": "A4",
+     "color": "fuchsia",
+     "imagen": "http://placeimg.com/640/480/nature",
+     "Cantidad": 89270,
+     "Stock": 32,
+     "id": "36"
+    },
+    {
+     "Price": 98969,
+     "CompanyName": "Honda Model T",
+     "model": "Aventador",
+     "color": "mint green",
+     "imagen": "http://placeimg.com/640/480/fashion",
+     "Cantidad": 82802,
+     "Stock": 83,
+     "id": "37"
+    },
+    {
+     "Price": 92164,
+     "CompanyName": "Jaguar Jetta",
+     "model": "Model 3",
+     "color": "red",
+     "imagen": "http://placeimg.com/640/480/animals",
+     "Cantidad": 6478,
+     "Stock": 40,
+     "id": "38"
+    },
+    {
+     "Price": 76927,
+     "CompanyName": "Audi Land Cruiser",
+     "model": "911",
+     "color": "fuchsia",
+     "imagen": "http://placeimg.com/640/480/fashion",
+     "Cantidad": 88375,
+     "Stock": 94,
+     "id": "39"
+    },
+    {
+     "Price": 45304,
+     "CompanyName": "Rolls Royce Model T",
+     "model": "Aventador",
+     "color": "pink",
+     "imagen": "http://placeimg.com/640/480/food",
+     "Cantidad": 39983,
+     "Stock": 93,
+     "id": "40"
+    },
+    {
+     "Price": 58889,
+     "CompanyName": "Honda Golf",
+     "model": "Impala",
+     "color": "mint green",
+     "imagen": "http://placeimg.com/640/480/nightlife",
+     "Cantidad": 68835,
+     "Stock": 14,
+     "id": "41"
+    },
+    {
+     "Price": 51524,
+     "CompanyName": "Land Rover 911",
+     "model": "Malibu",
+     "color": "grey",
+     "imagen": "http://placeimg.com/640/480/technics",
+     "Cantidad": 28156,
+     "Stock": 65,
+     "id": "42"
+    },
+    {
+     "Price": 58151,
+     "CompanyName": "Chrysler F-150",
+     "model": "Volt",
+     "color": "violet",
+     "imagen": "http://placeimg.com/640/480/business",
+     "Cantidad": 27379,
+     "Stock": 46,
+     "id": "43"
+    },
+    {
+     "Price": 79188,
+     "CompanyName": "Nissan Camry",
+     "model": "Expedition",
+     "color": "purple",
+     "imagen": "http://placeimg.com/640/480/animals",
+     "Cantidad": 64569,
+     "Stock": 33,
+     "id": "44"
+    },
+    {
+     "Price": 99331,
+     "CompanyName": "Tesla Model T",
+     "model": "Grand Cherokee",
+     "color": "indigo",
+     "imagen": "http://placeimg.com/640/480/transport",
+     "Cantidad": 16227,
+     "Stock": 13,
+     "id": "45"
+    },
+    {
+     "Price": 42494,
+     "CompanyName": "Honda Charger",
+     "model": "Charger",
+     "color": "violet",
+     "imagen": "http://placeimg.com/640/480/technics",
+     "Cantidad": 90450,
+     "Stock": 3,
+     "id": "46"
+    },
+    {
+     "Price": 59765,
+     "CompanyName": "Ferrari Model T",
+     "model": "LeBaron",
+     "color": "blue",
+     "imagen": "http://placeimg.com/640/480/animals",
+     "Cantidad": 71814,
+     "Stock": 10,
+     "id": "47"
+    },
+    {
+     "Price": 74683,
+     "CompanyName": "Bentley 2",
+     "model": "XC90",
+     "color": "white",
+     "imagen": "http://placeimg.com/640/480/animals",
+     "Cantidad": 29652,
+     "Stock": 62,
+     "id": "48"
+    },
+    {
+     "Price": 95985,
+     "CompanyName": "Bugatti Cruze",
+     "model": "Cruze",
+     "color": "red",
+     "imagen": "http://placeimg.com/640/480/fashion",
+     "Cantidad": 97867,
+     "Stock": 40,
+     "id": "49"
+    },
+    {
+     "Price": 44604,
+     "CompanyName": "Chevrolet Roadster",
+     "model": "Golf",
+     "color": "orchid",
+     "imagen": "http://placeimg.com/640/480/food",
+     "Cantidad": 5614,
+     "Stock": 8,
+     "id": "50"
+    }
+   ]
 async function dataToFirebase() {
     PRODUCTS.forEach((item) => {     
         // remplazar por el nombre de la coleccion 👇
