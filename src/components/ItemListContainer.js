@@ -15,10 +15,12 @@ const ItemListContainer = () => {
         if (idCompany){
             getAllcarsFromCatgory(idCompany)      
             .then(respuestaPromise => setItems(respuestaPromise))
+            .finally(()=>setLoading(false))
         }
         else{
             getAllcars()      
             .then(respuestaPromise => setItems(respuestaPromise))
+            .finally(()=>setLoading(false))
 
         }
         }, [idCompany]);

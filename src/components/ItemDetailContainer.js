@@ -18,6 +18,7 @@ function ItemDetailContainer({greeting,id}  )  {
     useEffect(()=>{
         getAllcar(idmodel)
         .then(respuestaPromise=> setItem(respuestaPromise))
+        .finally(()=>setLoading(false))
     }, [idmodel]);
     
     return(
