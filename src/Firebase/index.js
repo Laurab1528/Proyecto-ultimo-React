@@ -48,7 +48,7 @@ export async function getAllcarsFromCatgory(categoria){
 
 export async function getAllcar(id){
   
-  const  miColec =collection(firestoreDB,"cars1");
+  const  miColec =collection(firestoreDB,"cars");
   const docref=query(miColec,where("id","==",id));
   const resultDOC =await getDocs(docref);
   return resultDOC.docs[0].data();
