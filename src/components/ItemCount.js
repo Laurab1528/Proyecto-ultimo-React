@@ -9,14 +9,14 @@ const ItemCount = (props) => {
 
     const  handleSumar = () => {
         if(estado < props.stock){
-            setEstado (estado + 1)
+            setEstado(estado + 1)
         }
     }
 
     const  handleRestar = () => {
 
         if(estado > 1){
-            setEstado (estado - 1)
+            setEstado(estado - 1)
         }
         
 

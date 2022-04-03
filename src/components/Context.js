@@ -25,12 +25,12 @@ const MiProvider = ({ children }) => {
     }
 
     const yaExisteEnCarrito = (id) => {
-        //some
+        return carrito.some((producto) => producto.id === id);
     }
 
     const borrarProdDelCarrito = (id) => {
-        //filter
-    }
+        setCarrito(carrito.filter((producto) => producto.id !== id));
+    };
 
     const limpiarCarrito = () => {
         setCarrito([])
@@ -42,15 +42,40 @@ const MiProvider = ({ children }) => {
         return cantidadTotal;
     }
 
-    const calcPrecioTotal = () =>{
-        // idem función anterior, pero por cada item acumulamos la cantidad x el precio      
-        return;  
-    }
+    const sumarCantidad = (item, cantidad) => {
+        const newProducts = carrito.map((producto) => {
+            if (producto.id === item.id) {
+                const newProduct = {
+                    ...producto,
+                    cantidad: producto.cantidad + cantidad,
+                };
+                return newProduct;
+            } else {
+                return producto;
+            }
+        });
+        setCarrito(newProducts);
+    };
+
+    
+    const calcularTotal = () => {
+        let totalCarrito = 0;
+        carrito.forEach((producto) => {
+            totalCarrito += producto.price * producto.cantidad;
+        });
+        return totalCarrito;
+    
+    };
 
     const valorDelContexto = {
         carrito: carrito,      
         addItem: addItem,
-        calcCantidad: calcCantidad
+        calcCantidad: calcCantidad,
+        borrarProdDelCarrito:borrarProdDelCarrito,
+        limpiarCarrito:limpiarCarrito,
+        sumarCantidad:sumarCantidad,
+        calcularTotal:calcularTotal,
+
         // agregar el resto de las funciones que vayan creando
     }
 

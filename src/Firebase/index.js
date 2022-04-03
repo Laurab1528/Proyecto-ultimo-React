@@ -1,8 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {getDocs, getFirestore} from  'firebase/firestore/lite'
+import {getDocs, getFirestore, Timestamp} from  'firebase/firestore/lite'
 import { async } from '@firebase/util';
-import { collection, setDoc, query, where, doc, getDoc } from 'firebase/firestore/lite'
+import { collection, setDoc, query, where, doc, getDoc,addDoc,timestamp } from 'firebase/firestore/lite'
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -78,4 +78,15 @@ export async function getAllcarbyid(id){
 
 
 
+}
+
+export async function sentBuyOrder(order){
+  const fecha=Timestamp.now();
+  const orderwithDate={...order,timestamp:fecha};
+
+  const  miColec =collection(firestoreDB,"orders");
+  const orderDoc=await addDoc(miColec,orderwithDate);
+  return(orderDoc.id);
+
+  
 }
